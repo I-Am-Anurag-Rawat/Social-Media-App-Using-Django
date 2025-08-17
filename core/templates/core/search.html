@@ -1,0 +1,45 @@
+{% extends "core/base.html" %}
+
+{% block title %}Search Users{% endblock %}
+
+{% block extra_head %}
+<style>
+    @media (max-width: 767px) {
+        .search-container{
+          margin-top: clamp(2rem,25vw,7rem);
+          margin-left: 5rem;
+          margin-right: 5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="search-container min-h-screen">
+    <!-- Content -->
+    <div class="max-w-xl mx-auto bg-white mt-10 p-6 rounded-lg shadow">
+        <form method="get" action="{% url 'search-users' %}" class="flex mb-4">
+            <input type="text" name="q" value="{{ query }}" placeholder="Search users..." class="text-black w-full p-2 border rounded-l focus:outline-none focus:ring focus:border-blue-300" />
+            <button type="submit" class="bg-blue-500 text-white px-4 rounded-r">Search</button>
+        </form>
+
+        {% if query %}
+            <h2 class="mb-2 text-gray-700 font-semibold">Results for "{{ query }}":</h2>
+            {% if results %}
+                <ul class="space-y-3">
+                    {% for user in results %}
+                        <li class="p-3 border rounded hover:bg-gray-50">
+                            <a href="{% url 'user-profile' user.username %}" class="text-blue-600 font-medium">@{{ user.username }}</a>
+                            <p class="text-sm text-gray-500">{{ user.first_name }} {{ user.last_name }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-red-500">No users found.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock content %}

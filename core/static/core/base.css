@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-family: sans-serif;
+    background-color: #000;
+}
+.sidebar {
+    box-sizing: border-box;
+    width: clamp(12.5rem, 38vw, 25.75rem);
+    background-color: #000;
+    color: #fff;
+    height: 100vh;
+    padding: 50px;
+    padding-left: clamp(1rem, 5vw, 3.25rem);
+    padding-right: clamp(1rem, 5vw, 2rem);
+    position: fixed;
+}
+.sidebar a {
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 0;
+}
+.sidebar a:hover {
+    background-color: #111;
+}
+.content {
+    margin: 0 0 0;
+    margin-left: clamp(19.25rem, 37vw, 25.25rem);
+    padding: 0;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+}
+.header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 1rem;
+    width: 100%;
+    height: clamp(2rem,25vw,5rem);
+    background-color: #000;
+    color: #fff;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.header div h2 a{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+
+/* Media Queries for Mobile + Tablet */
+@media (max-width: 767px){
+    .sidebar{
+        all: unset;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-left: 10px;
+        padding: 10px;
+        width: 100%;
+        height: 5%;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    #sidebar-create-account{
+        display: none;
+    }
+    #sidebar-more{
+        display: none;
+    }
+    #sidebar-notifications{
+        display: none;
+    }
+    #sidebar-post{
+        display: none;
+    }
+    #sidebar-socialbuzz{
+        display: none; 
+    }
+    .content{
+        margin-left: 0;
+    }
+    #post-icon i{
+        display: flex;
+        font-size: clamp(4rem, 10vw, 5rem);
+        color: blue;
+        opacity: 0.6; /* Semi-transparent */
+        transition: opacity 0.3s ease; /* Smooth transition */
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        margin-right: 2rem;
+        margin-bottom: 5rem;
+    }
+    #post-icon i:hover {
+        opacity: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    .header{
+        display: none;
+    }
+    #post-icon{
+        display: none;
+    }
+}

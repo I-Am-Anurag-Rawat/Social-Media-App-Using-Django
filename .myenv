@@ -1,0 +1,10 @@
+SECRET_KEY = 'Generate secret key and add it here'
+<!-- Note :- You can generate a Django SECRET_KEY using a simple one-liner command in your terminal, the commend is:-
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())" -->
+
+DEBUG=False
+ALLOWED_HOSTS=127.0.0.1,localhost
+
+
+EMAIL_HOST_USER = 'add email by which user message will be sent'  # Your email address, Add within single quotation marks
+EMAIL_HOST_PASSWORD = 'create your email app password and add here'  <!-- App password (not your regular password), Add within single quotation marks, if you don't know about it just search on youtube how to generate gmail's App password -->

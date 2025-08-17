@@ -1,0 +1,97 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My App{% endblock %}</title>
+
+    {% load static %}
+    <!-- For base.css -->
+    <link rel="stylesheet" href="{% static 'core/base.css' %}">
+
+    <!-- For tailwind css -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- For icons -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+
+    <!-- For icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    {% block extra_head %}{% endblock %}
+
+</head>
+    <body class="bg-gradient-to-br from-gray-100 to-white">
+        <div class="sidebar">
+            <h2 id="sidebar-socialbuzz" class="font-bold mb-5"><a href="{% url "home" %}">SocialBuzz</a></h2>
+            <a href="{% url 'home' %}" {% if request.path == '/' %} id="sidebar-home" style="font-weight: bold; color: cyan;" {% endif %}>
+                🏠 Home
+            </a>
+            <a href="{% url 'search-users' %}" {% if request.path == '/search/' %} id="sidebar-search" style="font-weight: bold; color: cyan;" {% endif %}>
+                🔍 Explore
+            </a>
+            <a href="#" id="sidebar-notifications">🔔 Notifications</a>
+            <a href="{% url "messages" %}" {% if request.path == '/messages/' %} id="sidebar-profile" style="font-weight: bold; color: cyan;" {% endif %} id="sidebar-messages">✉️ Messages</a>
+
+            <a href="{% url "register" %}" id="sidebar-create-account">🆕 Create account</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url "logout" %}" id="sidebar-logout">🔓 Log out</a>
+            {% else %}
+                <a href="{% url "login" %}" id="sidebar-login">🔑 Log in</a>
+            {% endif %}
+
+            {% url 'user-profile' request.user.username as user_profile_url %}
+            <a href="{% url 'user-profile' request.user %}" {% if request.path == user_profile_url %} id="sidebar-profile" style="font-weight: bold; color: cyan;" {% endif %}>
+                👤 Profile
+            </a>
+            
+            {% if user.is_authenticated %}
+                <a href="{% url 'create_post' %}">
+                    <button id="sidebar-post" style="margin-top: 20px; padding: 10px; width: 100%; background: white; color: black; border: none; border-radius: 20px;">Post</button>
+                </a>
+            {% else  %}
+                <a href="{% url 'login' %}">
+                    <button id="sidebar-post" style="margin-top: 20px; padding: 10px; width: 100%; background: white; color: black; border: none; border-radius: 20px;">Post</button>
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- For media query -->
+        <div class="header">
+            <div class="mx-4">
+                <a href="{% url "user-profile" user %}">
+                    <img src="{{ user.profile.image.url }}" class="w-10 h-10 rounded-full" alt="Avatar">
+                </a>
+            </div>
+            <div>
+                <h2 class="text-xl font-bold mb-5"><a href="{% url "home" %}">SocialBuzz</a></h2>
+            </div>
+        </div>
+        <div id="post-icon">
+            {% if request.resolver_match.url_name == 'home' %}
+                {% if user.is_authenticated %}
+                    <a href="{% url 'create_post' %}">
+                        <i class='fa-solid fa-circle-plus'></i>
+                    </a>
+                {% else  %}
+                    <a href="{% url 'login' %}">
+                        <i class='fa-solid fa-circle-plus'></i>
+                    </a>
+                {% endif %}
+            {% endif %}
+        </div>
+        <!-- Media query code ends here -->
+
+
+        <div class="content">
+            {% block content %}
+            <!-- Page-specific content -->
+            {% endblock %}
+        </div>
+
+
+     <!-- For base.js -->
+     <script src="{% static 'core/base.js' %}"></script>
+    </body>
+</html>

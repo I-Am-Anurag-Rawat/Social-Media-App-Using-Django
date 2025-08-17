@@ -1,0 +1,97 @@
+{% extends "core/base.html" %}
+
+{% block title %}{{ post.user }}'s Post{% endblock %}
+
+{% block extra_head %}
+    <style>
+    @media (max-width: 767px) {
+      .comments-container{
+        margin-top: clamp(2rem,25vw,7rem);
+        margin-left: 2rem;
+        margin-right: 2rem;
+      }
+    }
+    </style>
+{% endblock extra_head %}
+
+{% block content %}
+<div class="comments-container bg-black text-black min-h-screen font-sans">
+
+    <div class="max-w-2xl mx-auto p-6 mt-10 bg-white border border-gray-200 rounded-md shadow-sm">
+        <!-- Post -->
+        <div class="mb-6">
+            <div class="flex items-center space-x-3">
+                <a href="{% url "user-profile" post.user %}">
+                    <img src="{{ post.user.profile.image.url }}" class="w-10 h-10 rounded-full" alt="Avatar">
+                </a>
+
+                <div>
+                    <div class="font-semibold">
+                        {{ post.user.first_name }} {{ post.user.last_name }} <span class="text-sm text-gray-500">{{ post.created_at|date:"M d, Y" }}</span>
+                    </div>
+                    <div class="font-semibold">
+                        <span class="text-sm text-gray-500">@{{ post.user }}</span>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-3 text-lg">{{ post.content }}</p>
+            {% if post.image %}
+                <img src="{{ post.image.url }}" class="w-full h-72 object-contain rounded mb-2">
+            {% endif %}
+            
+            {% if post.video %}
+                <video controls class="w-full rounded mb-2">
+                    <source src="{{ post.video.url }}">
+                </video>
+            {% endif %}
+            <div class="text-sm text-gray-600 mt-2 flex space-x-4">
+                {% if post.likes.count == 1 %}
+                <span>{{ post.likes.count }} Like</span>
+                {% else %}
+                <span>{{ post.likes.count }} Likes</span>
+                {% endif%}
+            </div>
+        </div>
+
+        <hr class="my-6">
+
+        <!-- Reply form -->
+        {% if user.is_authenticated %}
+        <div class="mt-6">
+            <form method="post" action="{% url 'comments' post.id %}">
+                {% csrf_token %}
+                <textarea name="reply" placeholder="Post your reply..." class="w-full p-3 border rounded-md text-sm focus:outline-none focus:ring focus:border-blue-300"></textarea>
+                <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Reply</button>
+            </form>
+        </div>
+        {% endif %}
+            
+        <hr class="my-6">
+
+        <!-- Comments -->
+        {% for comment in comments %}
+        <div class="mb-4">
+            <div class="flex items-center space-x-3">
+                <a href="{% url "user-profile" comment.user %}">
+                    <img src="{{ comment.user.profile.image.url }}" class="w-8 h-8 rounded-full" alt="Avatar">
+                </a>
+                <div>
+                    <div class="font-semibold">
+                        {{ comment.user.first_name }} {{ comment.user.last_name }} <span class="text-sm text-gray-500"> · {{ comment.timestamp|timesince }} ago</span>
+                    </div>
+                    <div class="font-semibold">
+                        <span class="text-sm text-gray-500">@{{ comment.user }}</span>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-2 text-black-800 text-sm">{{ comment.content }}</p>
+        </div>
+        <hr class="my-6">
+        {% endfor %}
+
+    </div>
+
+</div>
+</html>
+
+{% endblock %}

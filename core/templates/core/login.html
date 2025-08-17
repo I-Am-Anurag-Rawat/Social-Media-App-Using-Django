@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <title>Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 dark:bg-black flex items-center justify-center min-h-screen px-4">
+  <div class="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
+    <!-- Title -->
+    <h2 class="text-3xl font-extrabold mb-6 text-blue-600 text-center">Log in to your account</h2>
+
+    <!-- Login Form -->
+    <form method="POST" class="">
+      {% csrf_token %}
+
+      {% if messages %}
+        {% for message in messages %}
+          <p class="text-sm text-red-500 mb-2">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+
+      {{ form.as_p }}
+
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mt-4 transition duration-300">
+        Log In
+      </button>
+    </form>
+
+    <!-- Divider -->
+    <div class="flex items-center justify-center my-6">
+      <span class="h-px w-full bg-gray-300 dark:bg-gray-700"></span>
+      <span class="px-4 text-sm text-gray-500 dark:text-gray-400">or</span>
+      <span class="h-px w-full bg-gray-300 dark:bg-gray-700"></span>
+    </div>
+
+    <!-- Don't have an account? -->
+    <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+      Don’t have an account?
+      <a href="{% url 'register' %}" class="text-blue-600 hover:underline dark:text-blue-400">
+        Create one
+      </a>
+    </p>
+  </div>
+</body>
+</html>
