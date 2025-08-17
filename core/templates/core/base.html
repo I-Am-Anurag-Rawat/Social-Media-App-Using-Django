@@ -1,26 +1,27 @@
 <!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}My App{% endblock %}</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}My App{% endblock %}</title>
 
-    {% load static %}
-    <!-- For base.css -->
-    <link rel="stylesheet" href="{% static 'core/base.css' %}">
+        {% load static %}
+        <!-- For base.css -->
+        <link rel="stylesheet" href="{% static 'core/base.css' %}">
 
-    <!-- For tailwind css -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- For icons -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+        <!-- For tailwind css -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        
+        <!-- For icons -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
 
-    <!-- For icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    {% block extra_head %}{% endblock %}
+        <!-- For icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        {% block extra_head %}{% endblock %}
 
-</head>
+    </head>
+
     <body class="bg-gradient-to-br from-gray-100 to-white">
         <div class="sidebar">
             <h2 id="sidebar-socialbuzz" class="font-bold mb-5"><a href="{% url "home" %}">SocialBuzz</a></h2>
