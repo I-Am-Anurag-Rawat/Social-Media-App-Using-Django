@@ -36,10 +36,10 @@ With SocialBuzz, users can connect, share, and engage through posts, likes, comm
 ## 📸 Screenshots  
 
 ### Desktop View  
-![Desktop Screenshot]("C:\Users\Anurag Rawat\Pictures\Screenshots\Screenshot 2025-08-17 235058.png")  
+![Desktop Screenshot](project_demo_images/home_desktop.png)  
 
 ### Mobile View  
-![Mobile Screenshot]("C:\Users\Anurag Rawat\Pictures\Screenshots\Screenshot 2025-08-17 235230.png")  
+![Mobile Screenshot](project_Demo_images/home_mobile.png)  
 
 ---
 
@@ -69,7 +69,7 @@ Clone the repository:
 git clone https://github.com/I-Am-Anurag-Rawat/Social-Media-App-Using-Django.git
 cd Social-Media-App-Using-Django
 python -m venv .venv
-venv\Scripts\activate # or source venv/bin/activate on mac
+.venv\Scripts\activate # or source .venv/bin/activate on mac
 pip install -r requirements.txt
 python manage.py runserver
 
