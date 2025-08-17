@@ -36,10 +36,10 @@ With SocialBuzz, users can connect, share, and engage through posts, likes, comm
 ## 📸 Screenshots  
 
 ### Desktop View  
-![Desktop Screenshot](project_demo_images/home_desktop.png)  
+![Desktop Screenshot](project_demo_images/home_desktop.png)
 
 ### Mobile View  
-![Mobile Screenshot](project_Demo_images/home_mobile.png)  
+![Mobile Screenshot](project_demo_images/home_mobile.png)  
 
 ---
 

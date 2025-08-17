@@ -6,5 +6,5 @@ DEBUG=False
 ALLOWED_HOSTS=127.0.0.1,localhost
 
 
-EMAIL_HOST_USER = 'add email by which user message will be sent'  # Your email address, Add within single quotation marks
+EMAIL_HOST_USER = 'add email by which user message will be sent'  <!-- Your email address, Add within single quotation marks -->
 EMAIL_HOST_PASSWORD = 'create your email app password and add here'  <!-- App password (not your regular password), Add within single quotation marks, if you don't know about it just search on youtube how to generate gmail's App password -->
