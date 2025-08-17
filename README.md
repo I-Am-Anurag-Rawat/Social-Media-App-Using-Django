@@ -19,7 +19,7 @@ With SocialBuzz, users can connect, share, and engage through posts, likes, comm
 
 - 👥 **Social Graph**  
   - Follow/Unfollow other users  
-  - Following counts  
+  - Followers & Following count  
 
 - 🔎 **Search**  
   Find users easily and explore their profiles.  
