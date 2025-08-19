@@ -6,18 +6,24 @@
 <style>
     @media (max-width: 767px) {
         .search-container{
-          margin-top: clamp(2rem,25vw,7rem);
-          margin-left: 5rem;
-          margin-right: 5rem;
+            width: clamp(18.75rem, 80vw, 43.75rem);
+            margin-top: clamp(2rem,25vw,7rem);
+            margin-left: 1.5rem;
+            margin-right: 1.5rem;
+        }
+        .search-parent{
+            display: flex;
+            justify-content: center;
         }
     }
 </style>
 {% endblock %}
 
 {% block content %}
+<div class="search-parent">
 <div class="search-container min-h-screen">
     <!-- Content -->
-    <div class="max-w-xl mx-auto bg-white mt-10 p-6 rounded-lg shadow">
+    <div class=" mx-auto bg-white mt-10 p-6 rounded-lg shadow lg:max-w-3xl">
         <form method="get" action="{% url 'search-users' %}" class="flex mb-4">
             <input type="text" name="q" value="{{ query }}" placeholder="Search users..." class="text-black w-full p-2 border rounded-l focus:outline-none focus:ring focus:border-blue-300" />
             <button type="submit" class="bg-blue-500 text-white px-4 rounded-r">Search</button>
@@ -41,5 +47,5 @@
     </div>
 
 </div>
-
+</div>
 {% endblock content %}
