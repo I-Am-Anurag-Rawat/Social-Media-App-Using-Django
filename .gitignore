@@ -16,7 +16,10 @@ local_settings.py
 db.sqlite3-journal
 
 # Environment
+.env
 venv/
+ENV/
+env/
 .venv/
 
 # IDE / Editors
