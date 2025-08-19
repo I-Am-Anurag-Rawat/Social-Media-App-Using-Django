@@ -14,13 +14,9 @@ build/
 *.log
 local_settings.py
 db.sqlite3-journal
-media/
 
 # Environment
-.env
 venv/
-ENV/
-env/
 .venv/
 
 # IDE / Editors
