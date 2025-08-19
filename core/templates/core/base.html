@@ -3,6 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}My App{% endblock %}</title>
 
         {% load static %}
@@ -67,9 +68,11 @@
         <!-- For media query -->
         <div class="header">
             <div class="mx-4">
+                {% if user.is_authenticated %}
                 <a href="{% url "user-profile" user %}">
                     <img src="{{ user.profile.image.url }}" class="w-10 h-10 rounded-full" alt="Avatar">
                 </a>
+                {% endif %}
             </div>
             <div>
                 <h2 class="text-xl font-bold mb-5"><a href="{% url "home" %}">SocialBuzz</a></h2>
