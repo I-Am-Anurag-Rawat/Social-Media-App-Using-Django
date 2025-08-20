@@ -4,7 +4,8 @@
 
 {% block content %}
 <div class="text-black flex items-center justify-center h-screen">
-  <form method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md mr-5 ml-5">
+  <form method="POST" enctype="multipart/form-data">
     <h2 class="text-2xl font-bold mb-4 text-center">Create Post</h2>
     {% csrf_token %}
 
@@ -20,5 +21,6 @@
       Post
     </button>
   </form>
+</div>
 </div>
 {% endblock %}

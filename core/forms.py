@@ -34,8 +34,19 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['content', 'image', 'video']
         widgets = {
-            'content': forms.Textarea(attrs={'rows': 3, 'placeholder': 'What’s happening?'}),
+            'content': forms.Textarea(attrs={
+                'rows': 3,
+                'placeholder': 'What’s happening?',
+                'class': 'w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500'
+            }),
+            'image': forms.ClearableFileInput(attrs={
+                'class': 'w-full border border-gray-300 rounded p-1'
+            }),
+            'video': forms.ClearableFileInput(attrs={
+                'class': 'w-full border border-gray-300 rounded p-1'
+            }),
         }
+
 
 
 

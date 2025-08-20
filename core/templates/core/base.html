@@ -18,39 +18,41 @@
 
         <!-- For icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
+        {% comment %} <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css"> {% endcomment %}
+        {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> {% endcomment %}        
         {% block extra_head %}{% endblock %}
 
     </head>
 
     <body class="bg-gradient-to-br from-gray-100 to-white">
-        <div class="sidebar">
+        <div class="sidebar sidebar-first">
             <h2 id="sidebar-socialbuzz" class="font-bold mb-5"><a href="{% url "home" %}">SocialBuzz</a></h2>
             <a href="{% url 'home' %}" {% if request.path == '/' %} id="sidebar-home" style="font-weight: bold; color: cyan;" {% endif %}>
-                🏠 Home
+                <i class="fa fa-home"></i> Home
             </a>
             <a href="{% url 'search-users' %}" {% if request.path == '/search/' %} id="sidebar-search" style="font-weight: bold; color: cyan;" {% endif %}>
-                🔍 Explore
+                <i class='fa fa-search'></i> Explore
             </a>
-            <a href="#" id="sidebar-notifications">🔔 Notifications</a>
-            <a href="{% url "messages" %}" {% if request.path == '/messages/' %} id="sidebar-profile" style="font-weight: bold; color: cyan;" {% endif %} id="sidebar-messages">✉️ Messages</a>
+            <a href="#" id="sidebar-notifications"><i class='fas fa-bell'></i> Notifications</a>
+            <a href="{% url "messages" %}" {% if request.path == '/messages/' %} id="sidebar-profile" style="font-weight: bold; color: cyan;" {% endif %} id="sidebar-messages"><i class='fa fa-envelope'></i> Messages</a>
 
-            <a href="{% url "register" %}" id="sidebar-create-account">🆕 Create account</a>
+            <a href="{% url "register" %}" id="sidebar-create-account"><i class="fas fa-user-plus"></i>
+                Create account</a>
 
             {% if user.is_authenticated %}
-                <a href="{% url "logout" %}" id="sidebar-logout">🔓 Log out</a>
+                <a href="{% url "logout" %}" id="sidebar-logout"><i class="fa fa-sign-out"></i> Log out</a>
             {% else %}
-                <a href="{% url "login" %}" id="sidebar-login">🔑 Log in</a>
+                <a href="{% url "login" %}" id="sidebar-login"><i class="fa fa-sign-in"></i> Log in</a>
             {% endif %}
 
             {% if user.is_authenticated %}
                 {% url 'user-profile' request.user.username as user_profile_url %}
                 <a href="{% url 'user-profile' request.user %}" {% if request.path == user_profile_url %} id="sidebar-profile" style="font-weight: bold; color: cyan;" {% endif %}>
-                    👤 Profile
+                    <i class="fas fa-user"></i> Profile
                 </a>
             {% else %}
                 <a href="{% url 'login'%}">
-                    👤 Profile
+                    <i class="fas fa-user"></i></i> Profile
                 </a>
             {% endif %}
             
@@ -91,6 +93,39 @@
                 {% endif %}
             {% endif %}
         </div>
+
+
+            <div class="sidebar sidebar-second">
+                <h2 id="sidebar-socialbuzz" class="font-bold mb-5"><a href="{% url "home" %}">SocialBuzz</a></h2>
+                <a href="{% url 'home' %}" {% if request.path == '/' %} id="sidebar-home" style="font-weight: bold; color: cyan;" {% endif %}>
+                    <i class="fa fa-home"></i>
+                </a>
+                <a href="{% url 'search-users' %}" {% if request.path == '/search/' %} id="sidebar-search" style="font-weight: bold; color: cyan;" {% endif %}>
+                    <i class='fa fa-search'></i>
+                </a>
+                <a href="#" id="sidebar-notifications"><i class='fas fa-bell'></i></a>
+                <a href="{% url "messages" %}" {% if request.path == '/messages/' %} id="sidebar-profile" style="font-weight: bold; color: cyan;" {% endif %} id="sidebar-messages"><i class='fa fa-envelope'></i></a>
+            
+                <a href="{% url "register" %}" id="sidebar-create-account"><i class="fas fa-user-plus"></i></a>
+                
+                {% if user.is_authenticated %}
+                    <a href="{% url "logout" %}" id="sidebar-logout"><i class="fa fa-sign-out"></i></a>
+                {% else %}
+                    <a href="{% url "login" %}" id="sidebar-login"><i class="fa fa-sign-in"></i></a>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                    {% url 'user-profile' request.user.username as user_profile_url %}
+                    <a href="{% url 'user-profile' request.user %}" {% if request.path == user_profile_url %} id="sidebar-profile" style="font-weight: bold; color: cyan;" {% endif %}>
+                        <i class="fas fa-user"></i>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login'%}">
+                        <i class="fas fa-user"></i></i>
+                    </a>
+                {% endif %}
+                
+            </div>
         <!-- Media query code ends here -->
 
 

@@ -62,18 +62,28 @@ body {
 @media (max-width: 767px){
     .sidebar{
         all: unset;
+        box-sizing: border-box;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        padding-left: 10px;
-        padding: 10px;
-        width: 100%;
+        padding: 20px;
+        width: auto;
         height: 5%;
         background-color: #000;
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+    .sidebar-container{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        width: 100%;
+        height: 5%;
+        background-color: #000;
     }
     #sidebar-create-account{
         display: none;
@@ -108,6 +118,10 @@ body {
     #post-icon i:hover {
         opacity: 1;
     }
+    .sidebar-first{
+        display: none;
+
+    }
 }
 
 @media (min-width: 768px) {
@@ -115,6 +129,9 @@ body {
         display: none;
     }
     #post-icon{
+        display: none;
+    }
+    .sidebar-second{
         display: none;
     }
 }
