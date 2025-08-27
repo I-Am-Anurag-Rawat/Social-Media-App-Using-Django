@@ -103,14 +103,15 @@
         </a>
       </div> {% endcomment %}
 
-      {% if user.is_authenticated %}
+      
         <div class="flex items-center gap-x-2 mt-3 flex-wrap">
+          {% if user.is_authenticated %}
           <form method="POST"
                 action="{% url 'toggle_like' post.id %}"
                 class="like-form"
                 data-post-id="{{ post.id }}">
             {% csrf_token %}
-            <button type="submit" class="like-button bg-transparent border-none shadow-none p-0 text-sm sm:text-base text-gray-600 bg-gray-100 px-3 py-1 rounded hover:bg-pink-100 transition">
+            <button type="submit" class="like-button bg-transparent border-none shadow-none p-0 text-sm sm:text-base text-gray-600 bg-gray-100 px-3 py-1 rounded md:hover:bg-pink-100 transition">
               {% if post.liked_by_user %}
                 ❤️
               {% else %}
@@ -118,7 +119,7 @@
               {% endif %}
             </button>
           </form>
-
+          {% endif %}
           <span class="flex items-center space-x-6 sm:text-medium text-gray-600">
             <span class="like-count -ml-2 text-[14px]">
               {{ post.likes.count }} Like{{ post.likes.count|pluralize }}
@@ -139,7 +140,7 @@
           </div>
           {% endif %}
         </div>
-      {% endif %}
+      
 
 
       <!-- Write Comments -->
