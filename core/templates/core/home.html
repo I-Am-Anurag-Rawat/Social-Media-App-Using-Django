@@ -29,12 +29,11 @@
     }
 
     .comment-icon{
-      
       font-size: medium;
     }
 
     .like-count{
-      font-size: medium;      
+      font-size: medium;     
     }
 
     @keyframes fadeInOut {
@@ -125,8 +124,8 @@
               {{ post.likes.count }} Like{{ post.likes.count|pluralize }}
             </span>
             <a href="{% url 'comments' post.id %}">
-              <span class="comment-icon text-[14px]">
-                <i class="far fa-comment"></i>
+              <span class="text-[14px]">
+                <i class="far fa-comment comment-icon"></i>
                 {{ post.comments.count }} Comment{{ post.comments.count|pluralize }}
               </span>
             </a>
