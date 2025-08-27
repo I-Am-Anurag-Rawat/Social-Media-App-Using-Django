@@ -1,9 +1,10 @@
 from django.urls import path
-from . import views
-from .views import register_view, verify_otp_view, login_view, logout_view, create_post_view, toggle_like_view, user_profile_view, edit_profile, toggle_follow, search_users_view, comments_view, delete_post, messages_view
+from django.views.generic.base import RedirectView
+from .views import home_view, register_view, verify_otp_view, login_view, logout_view, create_post_view, toggle_like_view, user_profile_view, edit_profile, toggle_follow, search_users_view, comments_view, delete_post, messages_view
 
 urlpatterns = [
-    path('', views.home_view, name='home'),
+    path('', RedirectView.as_view(url='home/', permanent=True)),
+    path('home/', home_view, name='home'),
     path('register/', register_view, name='register'),
     path('verify-otp/', verify_otp_view, name='verify_otp'),
     path('login/', login_view, name='login'),

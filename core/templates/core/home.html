@@ -28,6 +28,15 @@
       font-weight: bold;
     }
 
+    .comment-icon{
+      
+      font-size: medium;
+    }
+
+    .like-count{
+      font-size: medium;      
+    }
+
     @keyframes fadeInOut {
       0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
       10% { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -85,41 +94,69 @@
         </video>
       {% endif %}
 
-      <div class="flex items-center space-x-6 text-sm text-gray-600 mt-2">
+      <hr>
+      {% comment %} <div class="flex items-center space-x-6 text-sm text-gray-600 mt-2">
         <span class="like-count">❤️ {{ post.likes.count }} Like{{ post.likes.count|pluralize }}</span>
-        <span>💬 {{ post.comments.count }} Comment{{ post.comments.count|pluralize }}</span>
-      </div>
+        <a href="{% url 'comments' post.id %}">
+          <span class="comment-icon">
+            <i class="far fa-comment "></i>
+          {{ post.comments.count }} Comment{{ post.comments.count|pluralize }}</span>
+        </a>
+      </div> {% endcomment %}
 
       {% if user.is_authenticated %}
-      <form method="POST"
-            action="{% url 'toggle_like' post.id %}"
-            class="like-form mt-3"
-            data-post-id="{{ post.id }}">
-        {% csrf_token %}
-        <button type="submit" class="like-button text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded hover:bg-pink-100 transition">
-          {% if post.liked_by_user %}
-            ❤️ Liked
-          {% else %}
-            🤍 Like
+        <div class="flex items-center gap-x-2 mt-3 flex-wrap">
+          <form method="POST"
+                action="{% url 'toggle_like' post.id %}"
+                class="like-form"
+                data-post-id="{{ post.id }}">
+            {% csrf_token %}
+            <button type="submit" class="like-button bg-transparent border-none shadow-none p-0 text-sm sm:text-base text-gray-600 bg-gray-100 px-3 py-1 rounded hover:bg-pink-100 transition">
+              {% if post.liked_by_user %}
+                ❤️
+              {% else %}
+                🤍
+              {% endif %}
+            </button>
+          </form>
+
+          <span class="flex items-center space-x-6 sm:text-medium text-gray-600">
+            <span class="like-count -ml-2 text-[14px]">
+              {{ post.likes.count }} Like{{ post.likes.count|pluralize }}
+            </span>
+            <a href="{% url 'comments' post.id %}">
+              <span class="comment-icon text-[14px]">
+                <i class="far fa-comment"></i>
+                {{ post.comments.count }} Comment{{ post.comments.count|pluralize }}
+              </span>
+            </a>
+          </span>
+
+          {% if user == post.user %}
+          <div class="ml-auto">
+            <button class="delete-post-btn text-red-500 hover:text-red-700 text-[14px]" data-post-id="{{ post.id }}">
+              🗑️ Delete
+            </button>
+          </div>
           {% endif %}
-        </button>
-      </form>
+        </div>
       {% endif %}
 
+
       <!-- Write Comments -->
-      <input type="hidden" name="post_id" value="{{ post.id }}">
+      {% comment %} <input type="hidden" name="post_id" value="{{ post.id }}">
       <a href="{% url 'comments' post.id %}">
         <input type="text" name="comment" placeholder="Add a comment..."
                class="mt-3 border rounded px-3 py-2 w-full text-sm focus:outline-none focus:ring focus:border-blue-300" readonly>
-      </a>
+      </a> {% endcomment %}
 
-      {% if user == post.user %}
-      <div class="flex justify-end mt-3">
-        <button class="delete-post-btn text-red-500 hover:text-red-700 text-sm" data-post-id="{{ post.id }}">
-          🗑️ Delete
-        </button>
-      </div>
-      {% endif %}
+      {% comment %} {% if user == post.user %}
+        <div class="flex justify-end mt-3">
+          <button class="delete-post-btn text-red-500 hover:text-red-700 text-sm" data-post-id="{{ post.id }}">
+            🗑️ Delete
+          </button>
+        </div>
+      {% endif %} {% endcomment %}
     </div>
     {% empty %}
       <p class="text-center text-gray-400">No posts yet.</p>
@@ -148,14 +185,14 @@
           const likeCount = postContainer.querySelector('.like-count');
           const button = this.querySelector('.like-button');
           //const likeCount = this.querySelector('.like-count');
-          likeCount.textContent = `❤️ ${data.like_count} Like${data.like_count !== 1 ? 's' : ''}`;
+          likeCount.textContent = `${data.like_count} Like${data.like_count !== 1 ? 's' : ''}`;
           if (data.liked) {
-            button.textContent = '❤️ Liked';
+            button.textContent = '❤️';
             button.classList.add('text-red-500');
             button.classList.remove('text-gray-600');
             //likeCount.textContent = "❤️ " + data.like_count + " Like" + (data.like_count === 1 ? "" : "s");
           } else {
-            button.textContent = '🤍 Like';
+            button.textContent = '🤍';
             button.classList.add('text-gray-600');
             button.classList.remove('text-red-500');
             //likeCount.textContent = "❤️ " + data.like_count + " Like" + (data.like_count === 1 ? "" : "s");
