@@ -97,7 +97,7 @@
 
         <div class="sidebar sidebar-second">
             <h2 id="sidebar-socialbuzz" class="font-bold mb-5"><a href="{% url "home" %}">SocialBuzz</a></h2>
-            <a href="{% url 'home' %}" {% if request.path == '/' %} id="sidebar-home" style="font-weight: bold; color: cyan;" {% endif %}>
+            <a href="{% url 'home' %}" {% if request.path == '/home/' %} id="sidebar-home" style="font-weight: bold; color: cyan;" {% endif %}>
                 <i class="fa fa-home"></i>
             </a>
             <a href="{% url 'search-users' %}" {% if request.path == '/search/' %} id="sidebar-search" style="font-weight: bold; color: cyan;" {% endif %}>
